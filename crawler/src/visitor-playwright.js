@@ -38,7 +38,7 @@ function Visitor(config, url, domain, basedir, maxurls, beforeLoadCbs, userActio
 
 	if (config.navigator.BROWSER === "chrome"){
 		this.browserType = chromium;
-		this.browserExecutablePath = config.chrome.CHROME_EXECUTABLE_PATH;
+		this.browserExecutablePath = config.chrome.CHROME_EXECUTABLE_PATH || chromium.executablePath();
 		this.browserFlags = config.chrome.CHROME_FLAGS;
 		this.browserHeadless = config.chrome.HEADLESS;
 		this.browserDevtools = config.chrome.DEVTOOLS;
@@ -680,5 +680,4 @@ Visitor.prototype.launch_browser = async function(){
 }
 
 module.exports = Visitor;
-
 

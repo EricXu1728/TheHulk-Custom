@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local DOM Clobbering Lab</title>
+    <style>
+      body {
+        font: 1rem/1.5 system-ui, sans-serif;
+        margin: 3rem auto;
+        max-width: 42rem;
+        padding: 0 1rem;
+      }
+
+      #result {
+        background: #f1f5f9;
+        border-left: 4px solid #2563eb;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Local DOM Clobbering Lab</h1>
+    <p>
+      The form below creates the named global <code>window.demoConfig</code>.
+      The page reads its named control and places the value into an HTML sink.
+    </p>
+    <p id="result" aria-live="polite"></p>
+    <p id="evidence"></p>
+
+    <form id="demoConfig" hidden>
+      <input
+        name="headline"
+        value="&lt;strong&gt;Read from the clobbered form&lt;/strong&gt;"
+      >
+    </form>
+
+    <script>
+      const headline = window.demoConfig.headline.value;
+      document.querySelector("#result").innerHTML = headline;
+      document.querySelector("#evidence").textContent =
+        `window.demoConfig resolves to the form: ${
+          window.demoConfig === document.querySelector("#demoConfig")
+        }`;
+    </script>
+  </body>
+</html>

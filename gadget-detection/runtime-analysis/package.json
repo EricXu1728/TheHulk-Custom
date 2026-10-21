@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "deploy": "npm run build && cp dist/thehulk-runtime-analysis.bundle.js ../http-server/thehulk-runtime-analysis.bundle.js"
+    "deploy": "npm run build"
   },
   "type": "module",
   "author": "",

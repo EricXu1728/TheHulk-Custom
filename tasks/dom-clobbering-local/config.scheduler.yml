@@ -1,0 +1,11 @@
+scheduler:
+  TEST_NAME: "LOCAL-DOM-CLOBBERING"
+  WORKSPACE: "tasks/dom-clobbering-local/output"
+  MODE: "seed"
+  SEED_URL: "http://127.0.0.1:8002/"
+  URL_LIST: ""
+  URL_LIST_FROM: 0
+  URL_LIST_TO: 1
+  MAX_WORKER: 1
+  MAX_URL: 1
+  TIMEOUT_PER_DOMAIN: 120000
