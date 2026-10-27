@@ -1,0 +1,6 @@
+[2026-10-27T15:36:41.950] [DEBUG] Visitor - Visiting URL: http://127.0.0.1:8001/#%3Ca%20id%3D%22demoConfig%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8001%2Fhulk.js%22%3EInert%20test%20anchor%3C%2Fa%3E
+[2026-10-27T15:36:42.207] [DEBUG] Visitor - Successfully loading the website: http://127.0.0.1:8001/#%3Ca%20id%3D%22demoConfig%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8001%2Fhulk.js%22%3EInert%20test%20anchor%3C%2Fa%3E
+[2026-10-27T15:36:52.213] [DEBUG] Visitor - Taint flows detected in the URL: http://127.0.0.1:8001/#%3Ca%20id%3D%22demoConfig%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8001%2Fhulk.js%22%3EInert%20test%20anchor%3C%2Fa%3E
+[2026-10-27T15:36:53.230] [DEBUG] Visitor - Max urls visited, exiting.
+[2026-10-27T15:36:53.235] [WARN] Visitor - Browser disconnected.
+[2026-10-27T15:36:53.268] [DEBUG] Visitor - Done visiting the website: 127.0.0.1 in 11.74 seconds 

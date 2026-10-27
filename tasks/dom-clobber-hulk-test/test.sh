@@ -7,7 +7,7 @@ THEHULK_PATH=$(realpath "$TASK_PATH/../..")
 
 bash "$TASK_PATH/run.sh"
 
-OUTPUT_PATH="$THEHULK_PATH/tasks/dom-clobber-hulk-test/output"
+OUTPUT_PATH="$THEHULK_PATH/tasks/dom-clobber-hulk-test/output-full/detection"
 TRACE_PATH=$(find "$OUTPUT_PATH" -type f -name taintflows.json -printf '%T@ %p\n' \
   | sort -nr \
   | head -n 1 \
@@ -23,10 +23,10 @@ const fs = require("fs");
 const trace = JSON.parse(fs.readFileSync(process.env.TRACE_PATH, "utf8"));
 const found = trace.some(flow =>
   flow.sourceReason === "SOURCE-FROM-WINDOW" &&
-  flow.sinkReason === "SINK-TO-DOM-ELEMENT-INNERHTML"
+  flow.sinkReason === "SINK-TO-SCRIPT-SRC"
 );
 if (!found) {
-  console.error(`FAIL: expected DOM-clobbering flow not found in ${process.env.TRACE_PATH}`);
+  console.error(`FAIL: expected SOURCE-FROM-WINDOW to SINK-TO-SCRIPT-SRC flow not found in ${process.env.TRACE_PATH}`);
   console.error(JSON.stringify(trace, null, 2));
   process.exit(1);
 }

@@ -1,8 +1,8 @@
 scheduler:
-  TEST_NAME: "DOM-CLOBBER-DEMO"
+  TEST_NAME: "DOM-CLOBBER-DEMO-TAINT-POSITIVE"
   WORKSPACE: "tasks/dom-clobber-demo/output"
   MODE: "seed"
-  SEED_URL: "http://127.0.0.1:8000/#%3Ca%20id%3D%22pageMessage%22%3EDOM%20HAS%20BEEN%20CLOBBERED%3C%2Fa%3E"
+  SEED_URL: "http://127.0.0.1:8000/hulk-taint-test.html#%3Ca%20id%3D%22demoConfig%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8000%2Fhulk.js%22%3EInert%20test%20anchor%3C%2Fa%3E"
   URL_LIST: ""
   URL_LIST_FROM: 0
   URL_LIST_TO: 1

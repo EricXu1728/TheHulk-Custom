@@ -1,6 +1,6 @@
 scheduler:
-  TEST_NAME: "DOM-CLOBBER-HULK-TEST"
-  WORKSPACE: "tasks/dom-clobber-hulk-test/output"
+  TEST_NAME: "DOM-CLOBBER-UNKNOWN-HULK-TEST"
+  WORKSPACE: "tasks/dom-clobber-unknown-hulk-test/output"
   MODE: "seed"
   SEED_URL: "http://127.0.0.1:8001/"
   URL_LIST: ""

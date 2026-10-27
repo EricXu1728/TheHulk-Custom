@@ -1,0 +1,8 @@
+[2026-10-27T15:32:29.811] [DEBUG] Visitor - Parsed exploit data: 1 inputs
+[2026-10-27T15:32:29.811] [DEBUG] Visitor - Injecting HTML markups to the page: <a id="demoConfig" href="http://127.0.0.1:8001/hulk.js"></a>
+[2026-10-27T15:32:29.813] [DEBUG] Visitor - Visiting URL: http://127.0.0.1:8001/
+[2026-10-27T15:32:30.070] [DEBUG] Visitor - Successfully loading the website: http://127.0.0.1:8001/
+[2026-10-27T15:32:40.076] [DEBUG] Visitor - Taint flows detected in the URL: http://127.0.0.1:8001/
+[2026-10-27T15:32:41.093] [DEBUG] Visitor - Max urls visited, exiting.
+[2026-10-27T15:32:41.098] [WARN] Visitor - Browser disconnected.
+[2026-10-27T15:32:41.132] [DEBUG] Visitor - Done visiting the website: 127.0.0.1 in 11.64 seconds 

@@ -1,0 +1,6 @@
+[
+    {
+        "sink": "SINK-TO-SCRIPT-SRC",
+        "payload": "<a id=\"demoConfig\" href=\"http://127.0.0.1:8001/hulk.js\"></a>"
+    }
+]

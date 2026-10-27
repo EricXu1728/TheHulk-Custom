@@ -1,18 +1,21 @@
-# DOM Clobber Demo Task
+# DOM Clobber Demo Taint Positive Control
 
-This task visits the local demo with a harmless URL-fragment markup that
-creates `window.pageMessage`, then records TheHulk's dynamic taint-analysis
-results. It is scoped to `127.0.0.1`; it does not run exploit generation or
-verification.
+The task uses the demo server on `127.0.0.1:8000`, but visits the separate
+`/hulk-taint-test.html` fixture rather than changing the demo's main page.
+That fixture uses an inert fragment anchor to clobber `window.demoConfig`,
+then sends its local `href` to a script `src`. The referenced `/hulk.js` only
+sets a local boolean; it does not execute an attack or contact another host.
+This is a positive control for taint tracking, not blind vulnerability
+discovery.
 
 ## Run
 
 In separate terminals:
 
-1. Start the demo server:
+1. Start the original demo server from its directory:
 
    ```sh
-   cd ../dom-clobber-demo
+   cd /home/ericx/hulkwork/dom-clobber-demo
    python3 server.py
    ```
 
@@ -30,18 +33,18 @@ In separate terminals:
    npm run deploy
    ```
 
-4. Run this task from the repository root:
+4. Run the test from the TheHulk repository root:
 
    ```sh
-   bash tasks/dom-clobber-demo/run.sh
+   bash tasks/dom-clobber-demo/test.sh
    ```
 
 The output is written under `tasks/dom-clobber-demo/output/`. Inspect the
-per-page `crawler/taintflows.json` for reported flows. The page should also
-show the clobbering candidate message when the seeded fragment is processed.
-Stop the server and proxy with `Ctrl+C` when finished.
+per-page `crawler/taintflows.json`; the test succeeds only if it contains a
+`SOURCE-FROM-WINDOW` to `SINK-TO-SCRIPT-SRC` flow. Stop the server and proxy
+with `Ctrl+C` when finished.
 
-The clobbered value is ultimately rendered with `textContent`, which treats
-it as text rather than HTML. A reported flow to `innerHTML` may be from the
-fragment insertion itself, so inspect its source and sink before treating it
-as evidence that TheHulk detected the named-property clobbering.
+The original `/` page still demonstrates its `pageMessage` behavior, but it
+uses `textContent` for the clobbered message, not a sink TheHulk reports as
+dangerous. The positive-control fixture is separate so the main demo remains
+unchanged.

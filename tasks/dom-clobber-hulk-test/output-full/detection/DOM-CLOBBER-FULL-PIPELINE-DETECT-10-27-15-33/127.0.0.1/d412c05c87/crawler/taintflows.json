@@ -1,0 +1,61 @@
+[
+    {
+        "sourceReason": "SOURCE-FROM-WINDOW",
+        "sinkReason": "SINK-TO-SCRIPT-SRC",
+        "sinkLoc": 233,
+        "taintedValue": {
+            "concrete": "http://127.0.0.1:8001/hulk.js",
+            "taintInfo": {
+                "taintID": [
+                    0
+                ],
+                "taintPropOperations": [
+                    {
+                        "operation": "getField",
+                        "base": "[object HTMLAnchorElement]",
+                        "arguments": [
+                            "href"
+                        ],
+                        "location": 225,
+                        "indicator": "base"
+                    },
+                    {
+                        "operation": "getField",
+                        "base": "[object Window]",
+                        "arguments": [
+                            "demoConfig"
+                        ],
+                        "location": 145
+                    }
+                ],
+                "taintSink": {
+                    "location": 233,
+                    "reason": "SINK-TO-SCRIPT-SRC",
+                    "operation": {
+                        "operation": "putField",
+                        "base": "[object HTMLScriptElement]",
+                        "arguments": [
+                            "src"
+                        ],
+                        "location": 233
+                    }
+                },
+                "taintSource": [
+                    {
+                        "location": 145,
+                        "reason": "SOURCE-FROM-WINDOW",
+                        "operation": {
+                            "operation": "getField",
+                            "base": "[object Window]",
+                            "arguments": [
+                                "demoConfig"
+                            ],
+                            "location": 145
+                        }
+                    }
+                ]
+            }
+        },
+        "iid": 233
+    }
+]

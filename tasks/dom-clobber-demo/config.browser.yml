@@ -22,7 +22,7 @@ collector:
   COLLECT_XHR_REQUESTS: false
   COLLECT_FETCH_REQUESTS: false
   EXTRACT_DOM_LOOKUPS: false
-  COLLECT_TAINTING_FLOWS: false
+  COLLECT_TAINTING_FLOWS: true
 
 navigator:
   BROWSER: "chrome"
@@ -31,7 +31,7 @@ navigator:
   NAVIGATION_WAIT_UNTIL: "domcontentloaded"
 
 proxy:
-  PROXY_SERVER: "localhost"
+  PROXY_SERVER: "127.0.0.1"
   PROXY_PORT: 8899
 
 callbacks:
