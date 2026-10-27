@@ -18,6 +18,23 @@ SCRIPT_PATH=$(realpath "$0")
 TASK_PATH=$(dirname "$SCRIPT_PATH")
 CONCOLIC_PATH=$(realpath $TASK_PATH/../../gadget-detection)
 THEHULK_PATH=$(realpath $TASK_PATH/../../)
+TEST_MODE=${1:-google-client-api}
+
+case "$TEST_MODE" in
+  google-client-api)
+    SCHEDULER_CONFIG="$TASK_PATH/config.scheduler.yml"
+    TEST_SERVER_ROOT="$THEHULK_PATH/dataset/dom-clobbering-collection/domc-gadgets-assets/gadgets"
+    ;;
+  local)
+    SCHEDULER_CONFIG="$TASK_PATH/config.scheduler.local.yml"
+    TEST_SERVER_ROOT="$TASK_PATH/fixture"
+    ;;
+  *)
+    echo "[!] Unknown test mode: $TEST_MODE (expected google-client-api or local)"
+    exit 1
+    ;;
+esac
+
 if [ "$(basename $CONCOLIC_PATH)" != "gadget-detection" ]; then
   echo "[!] Please run this script from the gadget-detection directory."
   exit 1
@@ -32,12 +49,10 @@ RUN_ANALYSIS=true
 # We currently don't use this 
 if [ "$RUN_TEST" = true ]; then
   check_and_kill_port 8080
-  pushd $THEHULK_PATH/dataset/dom-clobbering-collection/domc-gadgets-assets > /dev/null 2>&1
-  ./run.sh > /dev/null 2>&1 &
+  http-server "$TEST_SERVER_ROOT" -p 8080 > /dev/null 2>&1 &
   TEST_SERVER_PID=$!
   sleep 1
-  echo "[+] Test Server started with PID $TEST_SERVER_PID, at http://localhost:8080"
-  popd > /dev/null 2>&1
+  echo "[+] Test Server started with PID $TEST_SERVER_PID for $TEST_MODE, at http://localhost:8080"
 fi
 
 ## Step 2: Start the Proxy Server for instrumenting the JS & HTML on-the-fly
@@ -77,7 +92,7 @@ fi
 
 ## Step 4: Get back and run the task
 pushd $THEHULK_PATH/crawler/src/ > /dev/null 2>&1
-node ./scheduler.js --scheduler-config $TASK_PATH/config.scheduler.yml --crawler-config $TASK_PATH/config.browser.yml &
+node ./scheduler.js --scheduler-config "$SCHEDULER_CONFIG" --crawler-config "$TASK_PATH/config.browser.yml" &
 popd > /dev/null 2>&1
 BROWSER_PID=$!
 echo "[+] Browser started with PID $BROWSER_PID"

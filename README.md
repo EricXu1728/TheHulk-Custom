@@ -43,6 +43,18 @@ cd TheHulk && ./install.sh
 ./tasks/ae-run-basic-check/run.sh
 ```
 
+The default run exercises the Google Client API gadget PoC. To run an
+independent local taint-pipeline check without external HTTPS dependencies, use:
+
+```
+./tasks/ae-run-basic-check/run.sh local
+```
+
+The basic-check browser config ignores TLS certificate errors only for its
+disposable test browser, which proxies external HTTPS scripts. Do not copy that
+flag into general crawling configurations; install mitmproxy's CA for normal
+HTTPS analysis.
+
 ## Running
 
 TheHulk can be run in two modes: as a standalone module or as a pipeline task.

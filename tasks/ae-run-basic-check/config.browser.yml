@@ -8,7 +8,8 @@ chrome:
   CHROME_FLAGS: [
     "--no-sandbox",
     '--disable-setuid-sandbox',
-    '--disable-gpu'
+    '--disable-gpu',
+    '--ignore-certificate-errors'
   ]
   HEADLESS: true
   DEVTOOLS: false
@@ -83,7 +84,7 @@ callbacks:
       function_name: "retestIfJalangi2NotFound"
   
   POST_VISIT_CBS: 
-    - file: "crawler/src/callbacks/collect-results-all-callbacks.js"
+    - file: "tasks/ae-run-basic-check/callbacks/collect-results-all-callbacks.js"
       function_name: "collectResultsPerTaskCallbacks"
   
   POST_PROCESS_CBS:

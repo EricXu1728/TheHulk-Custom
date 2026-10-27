@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TheHulk local taint check</title>
+</head>
+<body>
+  <a id="hulk" href="/noop.js"></a>
+  <script>
+    const script = document.createElement('script');
+    script.src = window.hulk;
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>

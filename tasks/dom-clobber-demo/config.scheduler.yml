@@ -1,0 +1,11 @@
+scheduler:
+  TEST_NAME: "DOM-CLOBBER-DEMO"
+  WORKSPACE: "tasks/dom-clobber-demo/output"
+  MODE: "seed"
+  SEED_URL: "http://127.0.0.1:8000/#%3Ca%20id%3D%22pageMessage%22%3EDOM%20HAS%20BEEN%20CLOBBERED%3C%2Fa%3E"
+  URL_LIST: ""
+  URL_LIST_FROM: 0
+  URL_LIST_TO: 1
+  MAX_WORKER: 1
+  MAX_URL: 1
+  TIMEOUT_PER_DOMAIN: 120000

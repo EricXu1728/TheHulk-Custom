@@ -30,5 +30,3 @@ scheduler:
   MAX_URL: 1
   # Time budget for each worker to visit a single domain
   TIMEOUT_PER_DOMAIN: 5400000
-
-
