@@ -1,6 +1,0 @@
-[2026-10-27T15:37:54.082] [DEBUG] Visitor - Visiting URL: http://127.0.0.1:8001/
-[2026-10-27T15:37:54.338] [DEBUG] Visitor - Successfully loading the website: http://127.0.0.1:8001/
-[2026-10-27T15:38:04.344] [WARN] Visitor - No taint flows detected in the URL: http://127.0.0.1:8001/
-[2026-10-27T15:38:05.360] [DEBUG] Visitor - Max urls visited, exiting.
-[2026-10-27T15:38:05.364] [WARN] Visitor - Browser disconnected.
-[2026-10-27T15:38:05.396] [DEBUG] Visitor - Done visiting the website: 127.0.0.1 in 11.68 seconds 

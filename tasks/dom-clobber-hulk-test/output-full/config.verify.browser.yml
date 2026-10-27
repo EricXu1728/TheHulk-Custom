@@ -51,5 +51,5 @@ others:
   ANALYSIS_SCRIPT_PATH: /home/ericx/hulkwork/TheHulk/tasks/dom-clobber-hulk-test/output-full/build/thehulk-dom-clobber-verifier.bundle.js
   JALANGI2_RUNTIME_PATH: gadget-detection/runtime-jalangi2/dist/thehulk-jalangi2-runtime.bundle.js
   EXPLOIT_INPUTS: ""
-  EXPLOIT_INPUTS_FOLDER: /home/ericx/hulkwork/TheHulk/tasks/dom-clobber-hulk-test/output-full/detection/DOM-CLOBBER-FULL-PIPELINE-DETECT-10-27-15-36
+  EXPLOIT_INPUTS_FOLDER: /home/ericx/hulkwork/TheHulk/tasks/dom-clobber-hulk-test/output-full/detection/DOM-CLOBBER-FULL-PIPELINE-DETECT-10-27-15-43
   EXPLOIT_MAX_TRIES: 2
