@@ -2,7 +2,9 @@ scheduler:
   TEST_NAME: "LOCAL-DOM-CLOBBERING"
   WORKSPACE: "tasks/dom-clobbering-local/output"
   MODE: "seed"
-  SEED_URL: "http://127.0.0.1:8002/"
+  # Change this if your site uses a different hostname or entry path.
+  # Harmless DOM-clobbering seed: window.demoConfig.href points to local hulk.js.
+  SEED_URL: "http://127.0.0.1:8000/#%3Ca%20id%3D%22demoConfig%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8000%2Fhulk.js%22%3EInert%20test%20anchor%3C%2Fa%3E"
   URL_LIST: ""
   URL_LIST_FROM: 0
   URL_LIST_TO: 1

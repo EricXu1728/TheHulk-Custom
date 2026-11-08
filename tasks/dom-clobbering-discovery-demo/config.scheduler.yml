@@ -1,0 +1,12 @@
+scheduler:
+  TEST_NAME: "DOM-CLOBBERING-UNSEEDED-DISCOVERY"
+  WORKSPACE: "tasks/dom-clobbering-discovery-demo/output"
+  MODE: "seed"
+  # Deliberately plain: no fragment and no attacker-provided input.
+  SEED_URL: "http://127.0.0.1:8002/"
+  URL_LIST: ""
+  URL_LIST_FROM: 0
+  URL_LIST_TO: 1
+  MAX_WORKER: 1
+  MAX_URL: 1
+  TIMEOUT_PER_DOMAIN: 120000

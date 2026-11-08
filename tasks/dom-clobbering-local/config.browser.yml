@@ -22,7 +22,7 @@ collector:
   COLLECT_XHR_REQUESTS: false
   COLLECT_FETCH_REQUESTS: false
   EXTRACT_DOM_LOOKUPS: false
-  COLLECT_TAINTING_FLOWS: false
+  COLLECT_TAINTING_FLOWS: true
 
 navigator:
   BROWSER: "chrome"
@@ -44,6 +44,10 @@ callbacks:
       function_name: "waitForTenSecCb"
     - file: "crawler/src/callbacks/collect-results-callback.js"
       function_name: "collectResultPerPageCallbacks"
+    - file: "crawler/src/callbacks/collect-control-flow-callbacks.js"
+      function_name: "collectControlFlowPerPageCallbacks"
+    - file: "crawler/src/callbacks/exploit-generator-after-callbacks.js"
+      function_name: "generateExploitAfterCallbacks"
 
   AFTER_LOAD_CBS: []
   POST_VISIT_CBS: []

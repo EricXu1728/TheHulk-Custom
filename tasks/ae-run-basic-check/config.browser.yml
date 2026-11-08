@@ -64,7 +64,7 @@ callbacks:
       function_name: "installJalangi2AndAnalysisCb"
   
   PAGE_ACTIONS_CBS:
-      - file: crawler/src/callbacks/wait/wait-five-sec-callbacks.js
+      - file: tasks/ae-run-basic-check/callbacks/wait-for-five-sec-callbacks.js
         function_name: waitForFiveSecCb
 
       - file: crawler/src/callbacks/collect-results-callback.js

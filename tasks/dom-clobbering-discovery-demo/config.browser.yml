@@ -1,0 +1,61 @@
+chrome:
+  CHROME_EXECUTABLE_PATH: ""
+  CHROME_FLAGS:
+    - "--no-sandbox"
+    - "--disable-setuid-sandbox"
+    - "--disable-gpu"
+  HEADLESS: true
+  DEVTOOLS: false
+
+collector:
+  COLLECT_ALT_URLS: false
+  COLLECT_AND_CREATE_PAGE: false
+  COLLECT_CONSOLE_LOGS: true
+  COLLECT_REQUESTS: false
+  COLLECT_WEB_STORAGE: false
+  COLLECT_COOKIES: false
+  COLLECT_HTML: false
+  COLLECT_CSS: false
+  COLLECT_SCRIPTS: false
+  COLLECT_BROWSER_STDERR: false
+  COLLECT_BROWSER_STDOUT: false
+  COLLECT_XHR_REQUESTS: false
+  COLLECT_FETCH_REQUESTS: false
+  EXTRACT_DOM_LOOKUPS: false
+  COLLECT_TAINTING_FLOWS: true
+
+navigator:
+  BROWSER: "chrome"
+  WAIT_BEFORE_NEXT_URL: 1000
+  NAVIGATION_TIMEOUT: 0
+  NAVIGATION_WAIT_UNTIL: "domcontentloaded"
+
+proxy:
+  PROXY_SERVER: "127.0.0.1"
+  PROXY_PORT: 8899
+
+callbacks:
+  BEFORE_LOAD_CBS:
+    - file: "gadget-detection/browser/callbacks/install-runtime-analysis-callbacks-playwright.js"
+      function_name: "installJalangi2AndAnalysisCb"
+
+  PAGE_ACTIONS_CBS:
+    - file: "crawler/src/callbacks/wait/wait-ten-sec-callbacks.js"
+      function_name: "waitForTenSecCb"
+    - file: "crawler/src/callbacks/collect-results-callback.js"
+      function_name: "collectResultPerPageCallbacks"
+    - file: "crawler/src/callbacks/collect-control-flow-callbacks.js"
+      function_name: "collectControlFlowPerPageCallbacks"
+    - file: "crawler/src/callbacks/exploit-generator-after-callbacks.js"
+      function_name: "generateExploitAfterCallbacks"
+
+  AFTER_LOAD_CBS: []
+  POST_VISIT_CBS: []
+  POST_PROCESS_CBS:
+    PER_PAGE: []
+    AFTER_ALL_DOMAINS: []
+
+others:
+  ANALYSIS_NAME: "TaintTracking"
+  ANALYSIS_SCRIPT_PATH: "gadget-detection/runtime-analysis/dist/thehulk-runtime-analysis.bundle.js"
+  JALANGI2_RUNTIME_PATH: "gadget-detection/runtime-jalangi2/dist/thehulk-jalangi2-runtime.bundle.js"
