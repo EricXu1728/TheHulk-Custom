@@ -48,6 +48,8 @@ callbacks:
       function_name: "collectControlFlowPerPageCallbacks"
     - file: "crawler/src/callbacks/exploit-generator-after-callbacks.js"
       function_name: "generateExploitAfterCallbacks"
+    - file: "tasks/run-taint-tracking-trenco/callbacks/collect-clobberable-sources-sinks-callback.js"
+      function_name: "collectSourcesSinksPerPageCallbacks"
 
   AFTER_LOAD_CBS: []
   POST_VISIT_CBS: []

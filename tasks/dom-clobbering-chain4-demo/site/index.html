@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Northstar Analytics Export</title>
+    <style>
+      body { margin: 0; background: #f4f7fb; color: #172b4d; font: 16px system-ui, sans-serif; }
+      header { padding: 20px max(24px, calc((100vw - 880px) / 2)); background: #102a43; color: #fff; font-weight: 700; }
+      main { max-width: 880px; margin: 48px auto; padding: 0 24px; }
+      section { padding: 28px; border: 1px solid #d9e2ec; border-radius: 12px; background: white; }
+      .muted { color: #627d98; line-height: 1.6; }
+      #status { margin-top: 24px; padding: 14px; border-radius: 8px; background: #eef4f9; }
+      #importedContent { display: none; }
+    </style>
+  </head>
+  <body>
+    <header>NORTHSTAR · ANALYTICS</header>
+    <main>
+      <section>
+        <p class="muted">QUARTERLY BUSINESS REVIEW</p>
+        <h1>Build an analytics export</h1>
+        <p class="muted">The export workflow checks account preferences, confirms the selected report, enables an export format, and loads the format module. Legacy integrations expose each step through named DOM properties.</p>
+        <p id="status">Export is not configured.</p>
+      </section>
+      <div id="importedContent" aria-hidden="true"></div>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

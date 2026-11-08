@@ -1,0 +1,12 @@
+scheduler:
+  TEST_NAME: "DOM-CLOBBERING-CHAIN-SEEDED"
+  WORKSPACE: "tasks/dom-clobbering-chain-demo/output/seeded"
+  MODE: "seed"
+  # Two scriptless anchors: one opens the gated branch; the other supplies its sink URL.
+  SEED_URL: "http://127.0.0.1:8003/#%3Ca%20id%3D%22reportMode%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8003%2Freport-module.js%22%3EExport%3C%2Fa%3E%3Ca%20id%3D%22reportModule%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8003%2Freport-module.js%22%3EReport%20module%3C%2Fa%3E"
+  URL_LIST: ""
+  URL_LIST_FROM: 0
+  URL_LIST_TO: 1
+  MAX_WORKER: 1
+  MAX_URL: 1
+  TIMEOUT_PER_DOMAIN: 120000

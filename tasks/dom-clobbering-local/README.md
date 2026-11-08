@@ -39,8 +39,14 @@ Results are under `tasks/dom-clobbering-local/output/`. In the per-page
 - `conditions.json`: recorded branch conditions for exploit generation.
 - `exploit.json`: generated DOM-clobbering payload candidates, if the trace
   supports generation.
+- `clobberableSourcePool.json`: observed `window`/`document` property names
+  that may be clobberable.
+- `clobberableSources.json` and `clobberableSinks.json`: counts of observed
+  source and sink accesses.
 
 A taint flow or generated payload is a lead, not proof that the application is
 vulnerable. Confirm that a candidate actually changes a DOM property used by
 the page and reaches an exploitable sink. No flow means only that this visit
 did not observe one; the page may require other routes, inputs, or interactions.
+The source and sink inventories are dynamic: they include only lookups made
+during the pages and interactions exercised by that run.

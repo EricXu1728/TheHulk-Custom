@@ -35,4 +35,6 @@ The runner starts and stops the local demo server on port 8002. It exits with a
 failure if it does not find the expected flow and generated payloads. Results
 are printed as absolute paths and saved under
 `tasks/dom-clobbering-discovery-demo/output/` in `crawler/taintflows.json`,
-`conditions.json`, and `exploit.json`.
+`conditions.json`, and `exploit.json`. Each page folder also contains
+`clobberableSourcePool.json`, `clobberableSources.json`, and
+`clobberableSinks.json` for the names and sink types observed at runtime.
