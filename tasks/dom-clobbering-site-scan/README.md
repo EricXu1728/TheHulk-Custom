@@ -36,11 +36,24 @@ select a non-default proxy port:
 ```
 
 To supply initial named-property candidates, put one or more anchors in the
-fragment. The task imports only `a` elements and copies only `id`, `name`,
-`href`, and `rel`; it ignores scripts and event-handler attributes. For example:
+fragment. In the default mode, the task imports only `a` elements and copies
+only `id`, `name`, `href`, and `rel`; it ignores scripts and event-handler
+attributes. For example:
 
 ```sh
 ./tasks/dom-clobbering-site-scan/scan.sh 'http://localhost:8080/account#%3Ca%20id%3D%22reportModule%22%20href%3D%22http%3A%2F%2F127.0.0.1%3A8080%2Fmodule.js%22%3Etest%3C%2Fa%3E'
+```
+
+If a site accepts rich HTML through a form instead, provide the CSS selectors
+for its field and submit control. The task submits an empty value on the first
+round, then submits discovered anchor candidates through that field on later
+rounds. This exercises the site's own import workflow rather than the URL
+fragment:
+
+```sh
+./tasks/dom-clobbering-site-scan/scan.sh 8006 \
+  --field-selector '#updateMarkup' \
+  --submit-selector '#updateForm button[type=submit]'
 ```
 
 By default, discovered anchors use the scanned URL as their `href`. To try a
@@ -58,12 +71,13 @@ Results are stored in a timestamped folder under
 source-to-sink flows, `exploit.json` for Hulk's generated candidates, and the
 `clobberable*` JSON files for named DOM properties observed at runtime.
 
-The task injects markup into the test browser before page scripts execute; it
-does not establish that a real attacker can inject the same fragment into your
-site. Its generic anchor strategy satisfies common presence and `href`
+The default mode injects markup into the test browser before page scripts
+execute; form mode submits the generated markup through the selected UI
+controls. Neither mode proves that an unauthenticated attacker can reach that
+input path. The generic anchor strategy satisfies common presence and `href`
 conditions, but it does not infer arbitrary required element types, attribute
-values, event sequences, or application-specific states. It also scans only
-the supplied URL. Treat a found chain as a candidate to validate, and a missing
+values, event sequences, or application-specific states. It scans only the
+supplied URL. Treat a found chain as a candidate to validate, and a missing
 flow as inconclusive rather than proof the site is safe.
 
 If the first round has an empty `clobberableSourcePool.json`, Hulk did not

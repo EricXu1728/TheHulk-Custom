@@ -13,6 +13,12 @@ const templatePath = path.join(taskDir, "config.scheduler.template.yml");
 const browserConfigPath = process.env.HULK_BROWSER_CONFIG;
 const maxRounds = Number(process.env.HULK_MAX_ROUNDS || 12);
 const maxTargets = Number(process.env.HULK_MAX_TARGETS || 80);
+const formFieldSelector = process.env.HULK_FORM_FIELD_SELECTOR || "";
+const formSubmitSelector = process.env.HULK_FORM_SUBMIT_SELECTOR || "";
+if (Boolean(formFieldSelector) !== Boolean(formSubmitSelector)) {
+  throw new Error("Field-based scanning requires both a field selector and a submit selector.");
+}
+const submitThroughForm = Boolean(formFieldSelector && formSubmitSelector);
 const baseUrl = new URL(process.env.HULK_SITE_URL);
 let initialFragment = "";
 try { if (baseUrl.hash) initialFragment = decodeURIComponent(baseUrl.hash.slice(1)); }
@@ -77,7 +83,7 @@ async function main() {
     const roundConfig = path.join(outputDir, `${roundName}.scheduler.yml`);
     const markup = currentMarkup();
     const url = new URL(baseUrl.href);
-    if (markup) url.hash = encodeURIComponent(markup);
+    if (markup && !submitThroughForm) url.hash = encodeURIComponent(markup);
     const config = template
       .replace("__TEST_NAME__", `${runId}-${roundName}`)
       .replace("__WORKSPACE__", roundWorkspace)
@@ -88,7 +94,11 @@ async function main() {
     const result = spawnSync(process.execPath, [
       "./scheduler.js", "--scheduler-config", roundConfig,
       "--crawler-config", browserConfigPath
-    ], { cwd: crawlerSrcDir, stdio: "inherit" });
+    ], {
+      cwd: crawlerSrcDir,
+      stdio: "inherit",
+      env: { ...process.env, HULK_INJECT_MARKUP: markup }
+    });
     if (result.error) throw result.error;
     if (result.status !== 0) throw new Error(`Hulk scheduler exited with status ${result.status}`);
 

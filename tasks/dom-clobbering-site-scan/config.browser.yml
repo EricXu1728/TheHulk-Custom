@@ -42,6 +42,8 @@ callbacks:
       function_name: "importFragmentAnchorsCb"
 
   PAGE_ACTIONS_CBS:
+    - file: "tasks/dom-clobbering-site-scan/callbacks/submit-html-through-form.js"
+      function_name: "submitHTMLThroughFormCb"
     - file: "crawler/src/callbacks/wait/wait-ten-sec-callbacks.js"
       function_name: "waitForTenSecCb"
     - file: "crawler/src/callbacks/collect-results-callback.js"

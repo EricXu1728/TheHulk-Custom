@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="title desc">
+  <title id="title">Quarterly operations report</title>
+  <desc id="desc">Four bars comparing sample quarterly values.</desc>
+  <rect width="720" height="320" rx="18" fill="#f5f8fc"/>
+  <text x="38" y="48" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#17324d">Quarterly operations</text>
+  <path d="M80 250H650M80 90V250" stroke="#9fb3c8" stroke-width="2"/>
+  <rect x="140" y="165" width="74" height="85" rx="8" fill="#4ea5d9"/>
+  <rect x="260" y="125" width="74" height="125" rx="8" fill="#48a999"/>
+  <rect x="380" y="105" width="74" height="145" rx="8" fill="#f0b44c"/>
+  <rect x="500" y="72" width="74" height="178" rx="8" fill="#d97757"/>
+  <g font-family="system-ui, sans-serif" font-size="15" fill="#486581" text-anchor="middle">
+    <text x="177" y="278">Q1</text><text x="297" y="278">Q2</text><text x="417" y="278">Q3</text><text x="537" y="278">Q4</text>
+  </g>
+</svg>
