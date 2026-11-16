@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-const fs = require("node:fs/promises");
-const path = require("node:path");
-const { spawnSync } = require("node:child_process");
+// Keep this task usable with the Node versions commonly bundled with TheHulk.
+const fs = require("fs").promises;
+const path = require("path");
+const { spawnSync } = require("child_process");
 
 const taskDir = __dirname;
 const hulkDir = path.resolve(taskDir, "../..");
@@ -54,7 +55,7 @@ function extractAnchorNames(markup) {
 }
 
 function escapeAttribute(value) {
-  return String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+  return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 }
 
 function currentMarkup() {
@@ -65,9 +66,16 @@ function currentMarkup() {
 }
 
 function sourceNames(flow) {
-  return (flow.taintedValue?.taintInfo?.taintSource || [])
-    .flatMap(source => source.operation?.arguments || [])
-    .filter(value => typeof value === "string");
+  const taintInfo = flow.taintedValue && flow.taintedValue.taintInfo;
+  const sources = taintInfo && taintInfo.taintSource || [];
+  const names = [];
+  for (const source of sources) {
+    const args = source.operation && source.operation.arguments || [];
+    for (const value of args) {
+      if (typeof value === "string") names.push(value);
+    }
+  }
+  return names;
 }
 
 async function main() {
