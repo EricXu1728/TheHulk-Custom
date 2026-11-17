@@ -99,7 +99,8 @@ export class TaintSinkRules {
       try {
         if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' && offset === 'src') {
           return "SINK-TO-SCRIPT-SRC";
-        } else if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' && offset === 'text') {
+        } else if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' &&
+                   (offset === 'text' || offset === 'textContent')) {
           return "SINK-TO-SCRIPT-TEXT";
         } else if (offset === 'innerHTML' || offset === 'outerHTML') {
           return `SINK-TO-DOM-ELEMENT-${offset.toUpperCase()}`;
@@ -267,7 +268,8 @@ export class TaintSinkRules {
         if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' && offset === 'src') {
           reportClobberableSink("SINK-TO-SCRIPT-SRC");
           return;
-        } else if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' && offset === 'text') {
+        } else if (base.tagName && base.tagName.toUpperCase() === 'SCRIPT' &&
+                   (offset === 'text' || offset === 'textContent')) {
           reportClobberableSink("SINK-TO-SCRIPT-TEXT");
           return;
         } else if (offset === 'innerHTML' || offset === 'outerHTML') {
