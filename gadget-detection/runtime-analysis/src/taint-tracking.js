@@ -288,6 +288,30 @@ export class TaintTracking {
    * Original <tt>f</tt>, <tt>base</tt>, and <tt>args</tt> are replaced with that from the returned object if
    * an object is returned. The args should has Arguments type as it will passed to the InvokeFun operation.
    */
+  directEvalPre(iid, arg) {
+    try {
+      let [reason, taintedArg] = this.taintSinkRules.checkTaintAtSinkDirectEval(arg);
+      if (reason) {
+        TaintHelper.getTaintInfo(taintedArg).addtaintSink(
+          iid,
+          reason,
+          new TaintPropOperation('invokeFun:eval', null, [arg], iid)
+        );
+        Utils.reportDangerousFlow(
+          TaintHelper.getTaintInfo(taintedArg).getTaintSourceReason(),
+          TaintHelper.getTaintInfo(taintedArg).getTaintSourceLocation(),
+          reason,
+          iid,
+          taintedArg,
+          iid
+        );
+      }
+    } catch (e) {
+      // Analysis failures must not change the page's direct-eval behavior.
+      J$$.analysis.logger.warn('(Can be ignored)', e);
+    }
+  }
+
   invokeFunPre (iid, f, base, args, isConstructor, isMethod, functionIid, functionSid) {
     try {
       let [reason, taintedArg] = this.taintSinkRules.checkTaintAtSinkInvokeFun(f, base, args);

@@ -1968,6 +1968,14 @@ const babel = require('@babel/standalone');
 
 
   function instrumentEvalCode(code, iid, isDirect) {
+    // Direct eval calls are intentionally left as native `eval(...)` calls by
+    // instrumentCall so their lexical-scope semantics stay intact. That means
+    // they do not pass through runtime.invokeFunPre. Notify the analysis here,
+    // while the original eval argument (and any taint wrapper) is still intact.
+    if (isDirect && sandbox.analysis && sandbox.analysis.directEvalPre) {
+      sandbox.analysis.directEvalPre(iid, code);
+    }
+
     return instrumentCode({
           code: code,
           thisIid: iid,

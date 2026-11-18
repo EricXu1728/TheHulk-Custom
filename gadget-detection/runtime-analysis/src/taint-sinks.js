@@ -5,6 +5,14 @@ import { TaintHelper } from './taint-helper.js';
 
 export class TaintSinkRules {
 
+  checkTaintAtSinkDirectEval(arg) {
+    this.reportClobberableSink("SINK-TO-EVAL");
+    if (TaintHelper.isTainted(arg)) {
+      return ["SINK-TO-EVAL", arg];
+    }
+    return [false, undefined];
+  }
+
   /**
    * @description
    * --------------------------------
